@@ -825,3 +825,4 @@ C:\Users\admin\Source\Repos\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaRe
 C:\Users\admin\Source\Repos\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\admin\Source\Repos\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\admin\source\repos\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\obj\Debug\netcoreapp3.1\Razor\Views\Account\LoggedIn.cshtml.g.cs
+C:\Users\admin\source\repos\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePassword.cshtml.g.cs
