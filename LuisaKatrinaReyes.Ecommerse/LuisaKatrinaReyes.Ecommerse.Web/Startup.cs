@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace LuisaKatrinaReyes.Ecommerse.Web
 {
@@ -26,6 +27,30 @@ namespace LuisaKatrinaReyes.Ecommerse.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                {
+                    options.Events = new CookieAuthenticationEvents()
+                    {
+                        OnRedirectToLogin = (context) =>
+                        {
+                            context.HttpContext.Response.Redirect("/user/login");
+
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+                options.Cookie.Name = $".mercadia3.session";
+            });
+
             services.AddDbContextPool<DefaultDbContext>(
                 options => options.UseMySql(Configuration.GetConnectionString("DbContextMySQL"),
                     mysqlOptions => {
@@ -35,6 +60,7 @@ namespace LuisaKatrinaReyes.Ecommerse.Web
                     }
             ));
             services.AddControllersWithViews();
+            services.AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +82,7 @@ namespace LuisaKatrinaReyes.Ecommerse.Web
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

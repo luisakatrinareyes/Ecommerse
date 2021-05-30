@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\LuisaKatrinaReyes.Ecommerse.Web.csproj": {}
+    "C:\\Users\\admin\\source\\repos\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\LuisaKatrinaReyes.Ecommerse.Web.csproj": {}
   },
   "projects": {
-    "F:\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\LuisaKatrinaReyes.Ecommerse.Web.csproj": {
+    "C:\\Users\\admin\\source\\repos\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\LuisaKatrinaReyes.Ecommerse.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\LuisaKatrinaReyes.Ecommerse.Web.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\source\\repos\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\LuisaKatrinaReyes.Ecommerse.Web.csproj",
         "projectName": "LuisaKatrinaReyes.Ecommerse.Web",
-        "projectPath": "F:\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\LuisaKatrinaReyes.Ecommerse.Web.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "F:\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\obj\\",
+        "projectPath": "C:\\Users\\admin\\source\\repos\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\LuisaKatrinaReyes.Ecommerse.Web.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\source\\repos\\Ecommerse\\LuisaKatrinaReyes.Ecommerse\\LuisaKatrinaReyes.Ecommerse.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

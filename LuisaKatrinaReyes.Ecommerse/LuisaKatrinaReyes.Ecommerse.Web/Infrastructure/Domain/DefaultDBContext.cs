@@ -17,6 +17,8 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Infrastructure.Domain
         public DbSet<ProductTag> ProductTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserLogin> UserLogins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -72,6 +74,73 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Infrastructure.Domain
                 }
             };
 
+            List<User> users = new List<User>()
+            {
+                new User()
+                {
+                    Id = Guid.Parse("ecb5d292-ff66-484f-84ac-456a05f60f00"),
+                    FirstName = "Luisa Katrina",
+                    LastName = "Reyes",
+                    EmailAddress = "luisakatrinareyes@mailinator.com",
+                    Role = Role.Admin,
+                },
+                new User()
+                {
+                    Id = Guid.Parse("ecb5d292-ff66-484f-84ac-456a05f60f01"),
+                    FirstName = "Izzel Kate",
+                    LastName = "Reyes",
+                    EmailAddress = "izzelkatereyes@gmail.com",
+                    Role = Role.Customer,
+                },
+                new User()
+                {
+                    Id = Guid.Parse("ecb5d292-ff66-484f-84ac-456a05f60f02"),
+                    FirstName = "Leoj Ibsen",
+                    LastName = "Reyes",
+                    EmailAddress = "leojinbsenreyes@gmail.com",
+                    Role = Role.Customer,
+                },
+            };
+
+            modelBuilder.Entity<User>()
+                .HasData(users);
+
+            List<UserLogin> userLogins = new List<UserLogin>();
+
+            foreach (User user in users)
+            {
+                var salt = BCrypt.BCryptHelper.GenerateSalt();
+
+                userLogins.Add(new UserLogin()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    Key = "Password",
+                    Value = BCrypt.BCryptHelper.HashPassword("1234", salt),
+                    Type = LoginType.Email
+                });
+
+                userLogins.Add(new UserLogin()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    Key = "LoginStatus",
+                    Value = "Active", //Active, LockedOut
+                    Type = LoginType.General
+                });
+
+                userLogins.Add(new UserLogin()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    Key = "LoginRetries",
+                    Value = "0",
+                    Type = LoginType.Email
+                });
+            };
+
+            modelBuilder.Entity<UserLogin>()
+                .HasData(userLogins);
         }
     }
 }

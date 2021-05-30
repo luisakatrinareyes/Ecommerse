@@ -1,0 +1,232 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="blog-single.html">Products</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+<!-- Product Style -->
+<section class="product-area shop-sidebar shop section">
+    <div class="container">
+        <div class="row">
+            <!--<div class="col-lg-3 col-md-4 col-12">
+                <div class="shop-sidebar">-->
+            <!-- Single Widget -->
+            <!--<div class="single-widget category">
+                <h3 class="title">Categories</h3>
+                <ul class="categor-list">
+                    <li><a href="#">T-shirts</a></li>
+                    <li><a href="#">jacket</a></li>
+                    <li><a href="#">jeans</a></li>
+                    <li><a href="#">sweatshirts</a></li>
+                    <li><a href="#">trousers</a></li>
+                    <li><a href="#">kitwears</a></li>
+                    <li><a href="#">accessories</a></li>
+                </ul>
+            </div>-->
+            <!--/ End Single Widget -->
+            <!--</div>
+            </div>-->
+
+
+            <div class="col-lg-12 col-md-12 col-12">
+
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Shop Top -->
+                        <div class="shop-top">
+
+                            <div class="shop-shorter">
+                                <div class="single-shorter">
+                                    <label >Search :</label>
+                                    <input type="text" class="search" value="@Model.Products.Keyword" name="search" id="keyword">
+                                </div>
+                                <div class="single-shorter">
+                                    <label>Show :</label>
+                                    <select>
+                                        <option selected="selected">09</option>
+                                        <option>15</option>
+                                        <option>25</option>
+                                        <option>30</option>
+                                    </select>
+                                </div>
+                                <div class="single-shorter">
+                                    <label>Sort By :</label>
+                                    <select>
+                                        <option selected="selected">Name</option>
+                                        <option>Price</option>
+                                        <option>Size</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <ul class="view-mode">
+                                <li><a href="/manage/products/create" title="Add New"><i class="fa fa-plus"></i></a></li>
+                            </ul>
+                        </div>
+                        <!--/ End Shop Top -->
+                    </div>
+                </div>
+
+
+
+
+                @{
+                    if (Model.Products != null)
+                    {
+                        if (Model.Products.Items != null)
+                        {
+                            if (Model.Products.Items.Count > 0)
+                            {
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table shopping-summery">
+                                            <thead>
+                                                <tr class="main-hading">
+                                                    <th>PRODUCT</th>
+                                                    <th>NAME</th>
+                                                    <th class="text-center">UNIT PRICE</th>
+                                                    <th class="text-center"></th>
+                                                    <th class="text-center"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @{
+                                                    foreach (var product in Model.Products.Items)
+                                                    {
+                                                        <tr>
+                                                            <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
+                                                            <td class="product-des" data-title="Description">
+                                                                <p class="product-name"><a href="#">@product.Name</a></p>
+                                                                <p class="product-des">@product.TagLine</p>
+                                                            </td>
+                                                            <td class="price" data-title="Price"><span>@product.Price.ToString("##.00") </span></td>
+                                                            <td class="action" data-title="Update"><a href="~/manage/products/update/@product.Id"><i class="ti-pencil remove-icon"></i></a></td>
+                                                            <td class="action" data-title="Delete"><a href="#" onclick="confirmDelete('@product.Id','@product.Name')"><i class="ti-trash remove-icon"></i></a></td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!-- Shop Top -->
+                                        <div class="shop-top">
+                                            <ul class="view-mode">
+                                                <li class="active"><a href="shop-grid.html"><i class="fa fa-th-large"></i></a></li>
+                                                <li><a href="shop-list.html"><i class="fa fa-th-list"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <!--/ End Shop Top -->
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <span>Your search returned no results.</span>
+                            }
+                        }
+                        else
+                        {
+                            <span>Your search returned no results.</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>Your search returned no results.</span>
+                    }
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Product Style 1  -->
+
+
+@section Scripts{
+
+    <div class="modal" tabindex="-1" role="dialog" id="delete-product-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="/manage/products/delete" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Are you sure you want to delete <span class="delete-product-modal-name"></span>?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete <span class="delete-product-modal-name"></span>?</p>
+                        <input type="hidden" name="Id" id="delete-product-modal-id"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var pageIndex = @(Model.Products.Items != null ? Model.Products.PageIndex : 1);
+        var pageSize = @(Model.Products.Items != null ? Model.Products.PageSize : 10);
+        var pageCount = @(Model.Products.Items != null ? Model.Products.PageCount : 0);
+        var keyword = "@(Model.Products.Items != null ? Model.Products.Keyword : "")";
+        var baseUrl = location.protocol + '//' + location.host + location.pathname;
+        var filterStr = "@(!string.IsNullOrEmpty(Model.Products.FilterString) ? Model.Products.FilterString : "")";
+
+    function confirmDelete(id, name) {
+        $("#delete-product-modal-id").val(id);
+        $(".delete-product-modal-name").html(name);
+        $("#delete-product-modal").modal("show");
+    }
+
+    function search() {
+        window.location = baseUrl + "?keyword=" + keyword + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex + filterStr;
+    }
+
+    $("#keyword").blur(function () {
+        keyword = $("#keyword").val();
+        if (filterStr) {
+            filterStr = "&" + filterStr;
+        }
+        search();
+    });
+
+    $("#keyword").on('keypress', function (e) {
+        if (e.which == 13) {
+            keyword = $("#keyword").val();
+            if (filterStr) {
+                filterStr = "&" + filterStr;
+            }
+            search();
+        }
+    });
+
+    $("#next").click(function () {
+        pageIndex = pageIndex + 1;
+        search();
+    });
+
+    </script>
+}
+

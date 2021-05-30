@@ -1,4 +1,6 @@
-﻿using LuisaKatrinaReyes.Ecommerse.Web.Infrastructure.Domain;
+﻿using LuisaKatrinaReyes.Ecommerse.Web.Areas.Manage.Models;
+using LuisaKatrinaReyes.Ecommerse.Web.Areas.Manage.ViewModels;
+using LuisaKatrinaReyes.Ecommerse.Web.Infrastructure.Domain;
 using LuisaKatrinaReyes.Ecommerse.Web.Infrastructure.Domain.Models;
 using LuisaKatrinaReyes.Ecommerse.Web.ViewModels.Products;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace LuisaKatrinaReyes.Ecommerse.Web.Areas.Manage.Controllers
 {
+
     [Area("manage")]
     public class ProductsController : Controller
     {
@@ -24,7 +27,7 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Areas.Manage.Controllers
         //filter
         //sort
         [HttpGet("manage/products")]
-        public IActionResult Index(int pageIndex = 1,
+        public IActionResult Product(int pageIndex = 1,
                                     int pageSize = 10,
                                     string sortBy = "name",
                                     string sortOrder = "asc",
@@ -100,6 +103,101 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Areas.Manage.Controllers
             }
 
             return View(result);
+        }
+
+        [HttpPost("/manage/products/create")]
+        public IActionResult Create(CreateViewModel model)
+        {
+            Product product = new Product()
+            {
+                Id = Guid.NewGuid(),
+                Description = model.Description,
+                
+                CategoryId = model.CategoryId,
+                Name = model.Name,
+                Price = model.Price,
+                TagLine = model.TagLine
+                
+            };
+
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
+            return RedirectPermanent("/manage/products");
+        }
+
+        [HttpGet("/manage/products/AddProduct")]
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+
+
+        [HttpGet("manage/products/update/{id}")]
+        public IActionResult Update(Guid? id)
+        {
+            Product product = _context.Products.FirstOrDefault(p => p.Id == id);
+
+            if (product == null)
+            {
+                //TODO : error
+            }
+
+            return View(new UpdateViewModel()
+            {
+                Id = product.Id,
+                Description = product.Description,
+                Name = product.Name,
+                Price = product.Price,
+                TagLine = product.TagLine
+            });
+        }
+
+
+
+        [HttpPost("/manage/products/update")]
+        public IActionResult Update(UpdateViewModel model)
+        {
+            Product product = _context.Products.FirstOrDefault(p => p.Id == model.Id);
+
+            if (product != null)
+            {
+                product.Name = model.Name;
+                product.TagLine = model.TagLine;
+                product.Description = model.Description;
+                product.Price = model.Price;
+                product.UpdatedAt = DateTime.UtcNow;
+
+                _context.Products.Update(product);
+                _context.SaveChanges();
+            }
+            else
+            {
+                //TODO: Error
+            }
+
+            return RedirectPermanent("/manage/products");
+
+        }
+
+
+        [HttpPost("/manage/products/delete")]
+        public IActionResult Remove(IdViewModel model)
+        {
+            Product product = _context.Products.FirstOrDefault(p => p.Id == model.Id);
+
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+            }
+            else
+            {
+                //TODO: Error
+            }
+
+            return RedirectPermanent("/manage/products");
+
         }
     }
 }
