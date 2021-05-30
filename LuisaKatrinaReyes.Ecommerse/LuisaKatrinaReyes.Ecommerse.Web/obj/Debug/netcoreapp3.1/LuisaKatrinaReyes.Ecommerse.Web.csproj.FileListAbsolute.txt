@@ -407,3 +407,4 @@ F:\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\bin\Deb
 F:\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\obj\Debug\netcoreapp3.1\LuisaKatrinaReyes.Ecommerse.Web.MvcApplicationPartsAssemblyInfo.cs
 F:\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\obj\Debug\netcoreapp3.1\Razor\Views\Products\Index.cshtml.g.cs
 F:\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\obj\Debug\netcoreapp3.1\Razor\Views\Products\Product.cshtml.g.cs
+F:\Ecommerse\LuisaKatrinaReyes.Ecommerse\LuisaKatrinaReyes.Ecommerse.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_partialHeader.cshtml.g.cs
