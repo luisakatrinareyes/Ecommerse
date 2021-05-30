@@ -8,11 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LuisaKatrinaReyes.Ecommerse.Web.Areas.Manage.Controllers
 {
 
     [Area("manage")]
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly DefaultDbContext _context;

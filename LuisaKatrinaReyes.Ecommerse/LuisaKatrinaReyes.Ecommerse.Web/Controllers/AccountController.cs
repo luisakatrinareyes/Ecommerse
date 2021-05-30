@@ -33,13 +33,14 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Controllers
             emailPassword = (emailConfig["Password"]).ToString();
         }
 
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
@@ -47,6 +48,12 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Controllers
         }
         [HttpGet]
         public IActionResult LoggedIn()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
         {
             return View();
         }
@@ -65,7 +72,8 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Controllers
                 Id = Guid.NewGuid(),
                 EmailAddress = model.EmailAddress,
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
+                Role = Role.Customer,
             };
 
             List<UserLogin> userLogins = new List<UserLogin>();
@@ -117,7 +125,7 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Controllers
                        );
             return RedirectToAction("Login");
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> LoginAsync(LoginViewModel model)
         {
@@ -184,12 +192,14 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult ChangePassword()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult ChangePassword(ChangePasswordViewModel model)
         {
@@ -300,6 +310,7 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Controllers
             identity.AddClaim(new Claim(ClaimTypes.Name, user.FirstName));
             identity.AddClaim(new Claim(ClaimTypes.Email, user.EmailAddress));
             identity.AddClaim(new Claim(ClaimTypes.Role, user.Role.ToString()));
+
 
             var principal = new ClaimsPrincipal(identity);
 

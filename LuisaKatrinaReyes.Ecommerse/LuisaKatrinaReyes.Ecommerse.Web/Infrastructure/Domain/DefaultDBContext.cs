@@ -74,6 +74,9 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Infrastructure.Domain
                 }
             };
 
+            modelBuilder.Entity<Product>()
+              .HasData(product);
+
             List<User> users = new List<User>()
             {
                 new User()

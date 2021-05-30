@@ -7,7 +7,7 @@ namespace LuisaKatrinaReyes.Ecommerse.Web.Infrastructure.Domain.Models
 {
     public enum Role
     {
-        Admin = 5,
-        Customer = 1000
+        Admin=0,
+        Customer=1
     }
 }

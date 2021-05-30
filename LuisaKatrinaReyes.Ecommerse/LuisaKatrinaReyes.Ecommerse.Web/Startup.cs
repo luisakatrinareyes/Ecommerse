@@ -1,17 +1,18 @@
 using LuisaKatrinaReyes.Ecommerse.Web.Infrastructure.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace LuisaKatrinaReyes.Ecommerse.Web
 {
@@ -36,7 +37,7 @@ namespace LuisaKatrinaReyes.Ecommerse.Web
                     {
                         OnRedirectToLogin = (context) =>
                         {
-                            context.HttpContext.Response.Redirect("/user/login");
+                            context.HttpContext.Response.Redirect("/account/login");
 
                             return Task.CompletedTask;
                         }
@@ -60,6 +61,7 @@ namespace LuisaKatrinaReyes.Ecommerse.Web
                     }
             ));
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
             services.AddAuthorization();
         }
 
